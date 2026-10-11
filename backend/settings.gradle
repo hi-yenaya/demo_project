@@ -1,0 +1,8 @@
+rootProject.name = 'demo'
+
+include(
+        'app:web',
+        'app:batch',
+        'module:domain',
+        'module:common'
+)

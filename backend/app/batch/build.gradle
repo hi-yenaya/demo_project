@@ -1,0 +1,36 @@
+// app:batch - 실행 가능한 Spring Boot 배치 애플리케이션 모듈
+// 웹 서버 없이 실행 (spring.main.web-application-type=none)
+apply plugin: 'org.springframework.boot'
+
+dependencies {
+    // 모듈 참조
+    implementation project(':module:domain')
+    implementation project(':module:common')
+
+    // 스케줄링을 포함한 Spring Boot 기본 스타터 (웹 서버 제외)
+    implementation 'org.springframework.boot:spring-boot-starter'
+
+    // 외부 API 호출용 HTTP 클라이언트
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+
+    // JPA (Entity, Auditing 등 JPA 설정 사용을 위해 선언)
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // [Spring Batch 도입 시 아래 주석을 해제]
+    // implementation 'org.springframework.boot:spring-boot-starter-batch'
+
+    // 테스트
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+// bootJar 활성화
+bootJar {
+    enabled = true
+    archiveFileName = "batch-${version}.jar"
+}
+
+// 일반 jar 비활성화
+jar {
+    enabled = false
+}

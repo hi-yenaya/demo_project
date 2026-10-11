@@ -1,0 +1,29 @@
+// app:web - 실행 가능한 Spring Boot 웹 애플리케이션 모듈
+apply plugin: 'org.springframework.boot'
+
+dependencies {
+    // 모듈 참조
+    implementation project(':module:domain')
+    implementation project(':module:common')
+
+    // Spring Web MVC
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // JPA (Entity, Auditing 등 JPA 타입 직접 참조를 위해 선언)
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // 테스트
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+// bootJar 활성화 (기본값이나 명시적으로 선언)
+bootJar {
+    enabled = true
+    archiveFileName = "web-${version}.jar"
+}
+
+// 일반 jar 비활성화
+jar {
+    enabled = false
+}

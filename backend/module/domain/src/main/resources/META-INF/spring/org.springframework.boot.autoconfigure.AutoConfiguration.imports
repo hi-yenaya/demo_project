@@ -1,0 +1,2 @@
+com.example.domain.config.DomainJpaConfig
+com.example.domain.config.QueryDslConfig

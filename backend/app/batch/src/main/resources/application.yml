@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: demo-batch
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # 민감정보는 환경 변수로 주입 (미설정 시 기본값 사용)
+    url: ${DB_URL:jdbc:mysql://localhost:3306/ori_med?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8&serverTimezone=UTC}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:root}
+    hikari:
+      maximum-pool-size: 5
+      minimum-idle: 2
+      connection-timeout: 30000
+  jpa:
+    hibernate:
+      ddl-auto: ${DB_DDL_AUTO:none}
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
+    open-in-view: false
+  main:
+    # 배치는 내장 웹 서버 없이 실행
+    web-application-type: none
+
+logging:
+  level:
+    com.example: INFO
